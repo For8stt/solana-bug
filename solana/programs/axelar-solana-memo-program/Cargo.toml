@@ -1,0 +1,34 @@
+[package]
+name = "axelar-solana-memo-program"
+version = "0.1.0"
+description = "Utility program to test Axelar Gateway and other integrations"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
+
+[dependencies]
+axelar-executable = { workspace = true }
+axelar-solana-encoding.workspace = true
+axelar-solana-gateway = { workspace = true, features = ["no-entrypoint"] }
+axelar-solana-its = { workspace = true, features = ["no-entrypoint"] }
+borsh.workspace = true
+mpl-token-metadata.workspace = true
+program-utils = { workspace = true }
+solana-program.workspace = true
+
+[dev-dependencies]
+ethers-core.workspace = true
+evm-contracts-test-suite.workspace = true
+itertools.workspace = true
+rstest.workspace = true
+solana-program-test.workspace = true
+solana-sdk.workspace = true
+axelar-solana-gateway-test-fixtures.workspace = true
+pretty_assertions.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
