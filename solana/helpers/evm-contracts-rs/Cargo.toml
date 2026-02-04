@@ -1,0 +1,11 @@
+[package]
+name = "evm-contracts-rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ethers.workspace = true
+
+[build-dependencies]
+ethers.workspace = true
+xshell.workspace = true

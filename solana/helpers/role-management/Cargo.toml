@@ -1,0 +1,22 @@
+[package]
+name = "role-management"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[lints]
+workspace = true
+
+[dependencies]
+bincode.workspace = true
+bitflags.workspace = true
+borsh.workspace = true
+program-utils.workspace = true
+solana-program.workspace = true
+
+[dev-dependencies]
+bitflags.workspace = true
+rand.workspace = true
+solana-sdk.workspace = true
