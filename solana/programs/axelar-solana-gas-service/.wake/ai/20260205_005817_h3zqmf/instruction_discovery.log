@@ -1,0 +1,569 @@
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m00:58:17[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[94mSystem: Running codex exec --json --service-tier flex --model gpt-[0m[1;36m5[0m[94m --cd [0m
+[35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[35mst-axelar/audit-axelar-solana-241-master/solana/programs/[0m[95maxelar-solana-gas-service[0m[94m --skip-git-repo-check [0m
+[94m--sandbox workspace-write -c [0m[33mmodel_reasoning_effort[0m[94m=[0m[32m"high"[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m00:58:17[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[1;37mUser: [0m[1;37m<[0m[1;95mtask[0m[1;39m>[0m
+[1;39mDiscover instruction names with source metadata from dispatch context.[0m
+
+[1;39mCRITICAL:[0m
+[1;39m- Do NOT use Bash, Glob, or Grep tools[0m
+[1;39m- Use ONLY the dispatch_context provided below[0m
+[1;39m- Instruction names = enum variant converted to snake_case [0m[1;39m([0m[1;39mNO prefix[0m[1;39m)[0m
+[1;39m- Do NOT include error-only instructions[0m
+[1;39m<[0m[1;35m/[0m[1;95mtask[0m[1;39m>[0m
+
+[1;39m<context>[0m
+[1;39mprogram_name: axelar-solana-gas-service[0m
+[1;39mdispatch_context: |[0m
+[1;39m  [0m[1;35m/[0m[1;35m/[0m[1;39m File: [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/src/[0m[1;95mentrypoint.rs[0m
+[1;35m/[0m[1;35m/[0m[1;39m! Program entrypoint[0m
+
+[1;39m#![0m[1;39m[[0m[1;35mcfg[0m[1;39m([0m[1;35mall[0m[1;39m([0m[1;39mtarget_os = [0m[32m"solana"[0m[1;39m, [0m[1;35mnot[0m[1;39m([0m[1;39mfeature = [0m[32m"no-entrypoint"[0m[1;39m)[0m[1;39m)[0m[1;39m)[0m[1;39m][0m
+
+[1;39muse crate::processor::process_instruction;[0m
+
+[1;39msolana_program::entrypoint![0m[1;39m([0m[1;39mprocess_instruction[0m[1;39m)[0m[1;39m;[0m
+
+
+[1;35m/[0m[1;35m/[0m[1;39m Entrypoint Function: [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/src/[0m[1;95mprocessor.rs[0m
+
+[1;39m#[0m[1;39m[[0m[1;35mallow[0m[1;39m([0m[1;39mclippy::todo[0m[1;39m)[0m[1;39m][0m
+[1;39mpub fn [0m[1;35mprocess_instruction[0m[1;39m([0m
+[1;39m    program_id: &Pubkey,[0m
+[1;39m    accounts: &[0m[1;39m[[0m[1;39mAccountInfo<'_>[0m[1;39m][0m[1;39m,[0m
+[1;39m    input: &[0m[1;39m[[0m[1;39mu8[0m[1;39m][0m[1;39m,[0m
+[1;39m)[0m[1;39m -> ProgramResult [0m[1;39m{[0m
+[1;39m    let instruction = GasServiceInstruction::[0m[1;35mtry_from_slice[0m[1;39m([0m[1;39minput[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    [0m[1;35mcheck_program_account[0m[1;39m([0m[1;39m*program_id[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    match instruction [0m[1;39m{[0m
+[1;39m        GasServiceInstruction::Initialize [0m[1;39m{[0m[1;39m salt [0m[1;39m}[0m[1;39m => [0m[1;39m{[0m
+[1;39m            [0m[1;35mprocess_initialize_config[0m[1;39m([0m[1;39mprogram_id, accounts, salt[0m[1;39m)[0m
+[1;39m        [0m[1;39m}[0m
+[1;39m        GasServiceInstruction::[0m[1;35mSplToken[0m[1;39m([0m[1;39mix[0m[1;39m)[0m[1;39m => match ix [0m[1;39m{[0m
+[1;39m            PayWithSplToken::ForContractCall [0m[1;39m{[0m
+[1;39m                destination_chain,[0m
+[1;39m                destination_address,[0m
+[1;39m                payload_hash,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m                params,[0m
+[1;39m                decimals,[0m
+[1;39m                refund_address,[0m
+[1;39m            [0m[1;39m}[0m[1;39m => [0m[1;35mprocess_pay_spl_for_contract_call[0m[1;39m([0m
+[1;39m                program_id,[0m
+[1;39m                accounts,[0m
+[1;39m                destination_chain,[0m
+[1;39m                destination_address,[0m
+[1;39m                payload_hash,[0m
+[1;39m                refund_address,[0m
+[1;39m                &params,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m                decimals,[0m
+[1;39m            [0m[1;39m)[0m[1;39m,[0m
+[1;39m            PayWithSplToken::AddGas [0m[1;39m{[0m
+[1;39m                tx_hash,[0m
+[1;39m                log_index,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m                decimals,[0m
+[1;39m                refund_address,[0m
+[1;39m            [0m[1;39m}[0m[1;39m => [0m[1;35madd_spl_gas[0m[1;39m([0m
+[1;39m                program_id,[0m
+[1;39m                accounts,[0m
+[1;39m                tx_hash,[0m
+[1;39m                log_index,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m                refund_address,[0m
+[1;39m                decimals,[0m
+[1;39m            [0m[1;39m)[0m[1;39m,[0m
+[1;39m            PayWithSplToken::CollectFees [0m[1;39m{[0m[1;39m amount, decimals [0m[1;39m}[0m[1;39m => [0m[1;39m{[0m
+[1;39m                [0m[1;35mcollect_fees_spl[0m[1;39m([0m[1;39mprogram_id, accounts, amount, decimals[0m[1;39m)[0m
+[1;39m            [0m[1;39m}[0m
+[1;39m            PayWithSplToken::Refund [0m[1;39m{[0m
+[1;39m                tx_hash,[0m
+[1;39m                log_index,[0m
+[1;39m                fees,[0m
+[1;39m                decimals,[0m
+[1;39m            [0m[1;39m}[0m[1;39m => [0m[1;35mrefund_spl[0m[1;39m([0m[1;39mprogram_id, accounts, tx_hash, log_index, fees, decimals[0m[1;39m)[0m[1;39m,[0m
+[1;39m        [0m[1;39m}[0m[1;39m,[0m
+[1;39m        GasServiceInstruction::[0m[1;35mNative[0m[1;39m([0m[1;39mix[0m[1;39m)[0m[1;39m => match ix [0m[1;39m{[0m
+[1;39m            PayWithNativeToken::ForContractCall [0m[1;39m{[0m
+[1;39m                destination_chain,[0m
+[1;39m                destination_address,[0m
+[1;39m                payload_hash,[0m
+[1;39m                refund_address,[0m
+[1;39m                params,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m            [0m[1;39m}[0m[1;39m => [0m[1;35mprocess_pay_native_for_contract_call[0m[1;39m([0m
+[1;39m                program_id,[0m
+[1;39m                accounts,[0m
+[1;39m                destination_chain,[0m
+[1;39m                destination_address,[0m
+[1;39m                payload_hash,[0m
+[1;39m                refund_address,[0m
+[1;39m                &params,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m            [0m[1;39m)[0m[1;39m,[0m
+[1;39m            PayWithNativeToken::AddGas [0m[1;39m{[0m
+[1;39m                tx_hash,[0m
+[1;39m                log_index,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m                refund_address,[0m
+[1;39m            [0m[1;39m}[0m[1;39m => [0m[1;35madd_native_gas[0m[1;39m([0m
+[1;39m                program_id,[0m
+[1;39m                accounts,[0m
+[1;39m                tx_hash,[0m
+[1;39m                log_index,[0m
+[1;39m                gas_fee_amount,[0m
+[1;39m                refund_address,[0m
+[1;39m            [0m[1;39m)[0m[1;39m,[0m
+[1;39m            PayWithNativeToken::CollectFees [0m[1;39m{[0m[1;39m amount [0m[1;39m}[0m[1;39m => [0m[1;39m{[0m
+[1;39m                [0m[1;35mcollect_fees_native[0m[1;39m([0m[1;39mprogram_id, accounts, amount[0m[1;39m)[0m
+[1;39m            [0m[1;39m}[0m
+[1;39m            PayWithNativeToken::Refund [0m[1;39m{[0m
+[1;39m                tx_hash,[0m
+[1;39m                log_index,[0m
+[1;39m                fees,[0m
+[1;39m            [0m[1;39m}[0m[1;39m => [0m[1;35mrefund_native[0m[1;39m([0m[1;39mprogram_id, accounts, tx_hash, log_index, fees[0m[1;39m)[0m[1;39m,[0m
+[1;39m        [0m[1;39m}[0m[1;39m,[0m
+[1;39m    [0m[1;39m}[0m
+[1;39m}[0m
+
+[1;35m/[0m[1;35m/[0m[1;39m Dispatch Function: [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/src/processor/[0m[1;95minitialize.r[0m
+[1;95ms[0m
+
+[1;35mpub[0m[1;39m([0m[1;39mcrate[0m[1;39m)[0m[1;39m fn [0m[1;35mprocess_initialize_config[0m[1;39m([0m
+[1;39m    program_id: &Pubkey,[0m
+[1;39m    accounts: &[0m[1;39m[[0m[1;39mAccountInfo<'_>[0m[1;39m][0m[1;39m,[0m
+[1;39m    salt: [0m[1;39m[[0m[1;39mu8; [0m[1;36m32[0m[1;39m][0m[1;39m,[0m
+[1;39m)[0m[1;39m -> ProgramResult [0m[1;39m{[0m
+[1;39m    let accounts = &mut [0m[1;35maccounts.iter[0m[1;39m([0m[1;39m)[0m[1;39m;[0m
+[1;39m    let payer = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let authority = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let config_pda = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let system_account = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m Check: System Program Account[0m
+[1;39m    if !system_program::[0m[1;35mcheck_id[0m[1;39m([0m[1;39msystem_account.key[0m[1;39m)[0m[1;39m [0m[1;39m{[0m
+[1;39m        return [0m[1;35mErr[0m[1;39m([0m[1;39mProgramError::InvalidInstructionData[0m[1;39m)[0m[1;39m;[0m
+[1;39m    [0m[1;39m}[0m
+
+[1;39m    if !authority.is_signer [0m[1;39m{[0m
+[1;39m        return [0m[1;35mErr[0m[1;39m([0m[1;39mProgramError::MissingRequiredSignature[0m[1;39m)[0m[1;39m;[0m
+[1;39m    [0m[1;39m}[0m
+
+[1;39m    let [0m[1;39m([0m[1;39m_, bump[0m[1;39m)[0m[1;39m = [0m[1;35mget_config_pda[0m[1;39m([0m[1;39mprogram_id, &salt, authority.key[0m[1;39m)[0m[1;39m;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m Check: Gateway Config account uses the canonical bump.[0m
+[1;39m    [0m[1;35massert_valid_config_pda[0m[1;39m([0m[1;39mbump, &salt, authority.key, config_pda.key[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m Initialize the account[0m
+[1;39m    program_utils::[0m[1;35minit_pda_raw[0m[1;39m([0m
+[1;39m        payer,[0m
+[1;39m        config_pda,[0m
+[1;39m        program_id,[0m
+[1;39m        system_account,[0m
+[1;39m        size_of::<Config>[0m[1;39m([0m[1;39m)[0m[1;35m.try_into[0m[1;39m([0m[1;39m)[0m[1;35m.expect[0m[1;39m([0m[32m"must be valid u64"[0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;39m[[0m
+[1;39m            seed_prefixes::CONFIG_SEED,[0m
+[1;39m            &salt,[0m
+[1;39m            [0m[1;35mauthority.key.as_ref[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m            &[0m[1;39m[[0m[1;39mbump[0m[1;39m][0m[1;39m,[0m
+[1;39m        [0m[1;39m][0m[1;39m,[0m
+[1;39m    [0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let mut data = [0m[1;35mconfig_pda.try_borrow_mut_data[0m[1;39m([0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let gateway_config = Config::[0m[1;35mread_mut[0m[1;39m([0m[1;39m&mut data[0m[1;39m)[0m[1;35m.ok_or[0m[1;39m([0m[1;39mProgramError::InvalidAccountData[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    *gateway_config = Config [0m[1;39m{[0m
+[1;39m        bump,[0m
+[1;39m        authority: *authority.key,[0m
+[1;39m        salt,[0m
+[1;39m    [0m[1;39m}[0m[1;39m;[0m
+
+[1;39m    [0m[1;35mOk[0m[1;39m([0m[1;39m([0m[1;39m)[0m[1;39m)[0m
+[1;39m}[0m
+
+[1;35m/[0m[1;35m/[0m[1;39m Dispatch Function: [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/src/processor/[0m[1;95mspl.rs[0m
+
+[1;35mpub[0m[1;39m([0m[1;39mcrate[0m[1;39m)[0m[1;39m fn [0m[1;35mprocess_pay_spl_for_contract_call[0m[1;39m([0m
+[1;39m    program_id: &Pubkey,[0m
+[1;39m    accounts: &[0m[1;39m[[0m[1;39mAccountInfo<'_>[0m[1;39m][0m[1;39m,[0m
+[1;39m    destination_chain: String,[0m
+[1;39m    destination_address: String,[0m
+[1;39m    payload_hash: [0m[1;39m[[0m[1;39mu8; [0m[1;36m32[0m[1;39m][0m[1;39m,[0m
+[1;39m    refund_address: Pubkey,[0m
+[1;39m    params: &[0m[1;39m[[0m[1;39mu8[0m[1;39m][0m[1;39m,[0m
+[1;39m    gas_fee_amount: u64,[0m
+[1;39m    decimals: u8,[0m
+[1;39m)[0m[1;39m -> ProgramResult [0m[1;39m{[0m
+[1;39m    if gas_fee_amount == [0m[1;36m0[0m[1;39m [0m[1;39m{[0m
+[1;39m        msg![0m[1;39m([0m[32m"Gas fee amount cannot be zero"[0m[1;39m)[0m[1;39m;[0m
+[1;39m        return [0m[1;35mErr[0m[1;39m([0m[1;39mProgramError::InvalidInstructionData[0m[1;39m)[0m[1;39m;[0m
+[1;39m    [0m[1;39m}[0m
+
+[1;39m    let [0m[1;39m([0m[1;39maccounts, signer_pubkeys[0m[1;39m)[0m[1;39m = [0m[1;35maccounts.split_at[0m[1;39m([0m[1;36m6[0m[1;39m)[0m[1;39m;[0m
+[1;39m    let accounts = &mut [0m[1;35maccounts.iter[0m[1;39m([0m[1;39m)[0m[1;39m;[0m
+[1;39m    let sender = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let sender_ata = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let config_pda = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let config_pda_ata = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let mint = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let token_program = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m Ensure config_pda is valid[0m
+[1;39m    [0m[1;35mensure_valid_config_pda[0m[1;39m([0m[1;39mconfig_pda, program_id[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m valid token program[0m
+[1;39m    spl_token_[0m[1;92m2022::c[0m[1;35mheck_spl_token_program_account[0m[1;39m([0m[1;39mtoken_program.key[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m ensure config_pda_ata is owned by the Token Program and matches expected fields[0m
+[1;39m    [0m[1;35mensure_valid_config_pda_ata[0m[1;39m([0m[1;39mconfig_pda_ata, token_program, mint, config_pda[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    let ix = [0m[1;35mtransfer_tokens[0m[1;39m([0m
+[1;39m        token_program,[0m
+[1;39m        sender_ata,[0m
+[1;39m        mint,[0m
+[1;39m        config_pda_ata,[0m
+[1;39m        sender,[0m
+[1;39m        signer_pubkeys,[0m
+[1;39m        gas_fee_amount,[0m
+[1;39m        decimals,[0m
+[1;39m    [0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35minvoke[0m[1;39m([0m
+[1;39m        &ix,[0m
+[1;39m        &[0m[1;39m[[0m
+[1;39m            [0m[1;35msender.clone[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m            [0m[1;35mmint.clone[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m            [0m[1;35msender_ata.clone[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m            [0m[1;35mconfig_pda_ata.clone[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m            [0m[1;35mtoken_program.clone[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        [0m[1;39m][0m[1;39m,[0m
+[1;39m    [0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m Emit an event[0m
+[1;39m    [0m[1;35msol_log_data[0m[1;39m([0m[1;39m&[0m[1;39m[[0m
+[1;39m        event_prefixes::SPL_PAID_FOR_CONTRACT_CALL,[0m
+[1;39m        &[0m[1;35mconfig_pda.key.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mconfig_pda_ata.key.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mmint.key.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mtoken_program.key.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mdestination_chain.into_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mdestination_address.into_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &payload_hash,[0m
+[1;39m        &[0m[1;35mrefund_address.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        params,[0m
+[1;39m        &[0m[1;35mgas_fee_amount.to_le_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m    [0m[1;39m][0m[1;39m)[0m[1;39m;[0m
+
+[1;39m    [0m[1;35mOk[0m[1;39m([0m[1;39m([0m[1;39m)[0m[1;39m)[0m
+[1;39m}[0m
+
+[1;35m/[0m[1;35m/[0m[1;39m Dispatch Function: [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/src/processor/[0m[1;95mnative.rs[0m
+
+[1;35mpub[0m[1;39m([0m[1;39mcrate[0m[1;39m)[0m[1;39m fn [0m[1;35mprocess_pay_native_for_contract_call[0m[1;39m([0m
+[1;39m    program_id: &Pubkey,[0m
+[1;39m    accounts: &[0m[1;39m[[0m[1;39mAccountInfo<'_>[0m[1;39m][0m[1;39m,[0m
+[1;39m    destination_chain: String,[0m
+[1;39m    destination_address: String,[0m
+[1;39m    payload_hash: [0m[1;39m[[0m[1;39mu8; [0m[1;36m32[0m[1;39m][0m[1;39m,[0m
+[1;39m    refund_address: Pubkey,[0m
+[1;39m    params: &[0m[1;39m[[0m[1;39mu8[0m[1;39m][0m[1;39m,[0m
+[1;39m    gas_fee_amount: u64,[0m
+[1;39m)[0m[1;39m -> ProgramResult [0m[1;39m{[0m
+[1;39m    if gas_fee_amount == [0m[1;36m0[0m[1;39m [0m[1;39m{[0m
+[1;39m        msg![0m[1;39m([0m[32m"Gas fee amount cannot be zero"[0m[1;39m)[0m[1;39m;[0m
+[1;39m        return [0m[1;35mErr[0m[1;39m([0m[1;39mProgramError::InvalidInstructionData[0m[1;39m)[0m[1;39m;[0m
+[1;39m    [0m[1;39m}[0m
+
+[1;39m    let accounts = &mut [0m[1;35maccounts.iter[0m[1;39m([0m[1;39m)[0m[1;39m;[0m
+[1;39m    let sender = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let config_pda = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+[1;39m    let system_program = [0m[1;35mnext_account_info[0m[1;39m([0m[1;39maccounts[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35mtry_load_config[0m[1;39m([0m[1;39mprogram_id, config_pda[0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35minvoke[0m[1;39m([0m
+[1;39m        &system_instruction::[0m[1;35mtransfer[0m[1;39m([0m[1;39msender.key, config_pda.key, gas_fee_amount[0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;39m[[0m[1;35msender.clone[0m[1;39m([0m[1;39m)[0m[1;39m, [0m[1;35mconfig_pda.clone[0m[1;39m([0m[1;39m)[0m[1;39m, [0m[1;35msystem_program.clone[0m[1;39m([0m[1;39m)[0m[1;39m][0m[1;39m,[0m
+[1;39m    [0m[1;39m)[0m[1;39m?;[0m
+
+[1;39m    [0m[1;35m/[0m[1;35m/[0m[1;39m Emit an event[0m
+[1;39m    [0m[1;35msol_log_data[0m[1;39m([0m[1;39m&[0m[1;39m[[0m
+[1;39m        event_prefixes::NATIVE_GAS_PAID_FOR_CONTRACT_CALL,[0m
+[1;39m        &[0m[1;35mconfig_pda.key.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mdestination_chain.into_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &[0m[1;35mdestination_address.into_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        &payload_hash,[0m
+[1;39m        &[0m[1;35mrefund_address.to_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m        params,[0m
+[1;39m        &[0m[1;35mgas_fee_amount.to_le_bytes[0m[1;39m([0m[1;39m)[0m[1;39m,[0m
+[1;39m    [0m[1;39m][0m[1;39m)[0m[1;39m;[0m
+
+[1;39m    [0m[1;35mOk[0m[1;39m([0m[1;39m([0m[1;39m)[0m[1;39m)[0m
+[1;39m}[0m
+[1;39m<[0m[1;35m/[0m[1;95mcontext[0m[1;39m>[0m
+
+[1;39m<tools_usage>[0m
+[1;39mALLOWED:[0m
+[1;39m- Write tool: Save to [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/.wake/ai/20260205_005817_h[0m
+[1;35m3zqmf/[0m[1;95minstructions.json[0m
+
+[1;39mABSOLUTELY FORBIDDEN - DO NOT USE UNDER ANY CIRCUMSTANCES:[0m
+[1;39m- Bash tool - NEVER execute shell commands[0m
+[1;39m- Glob tool - NEVER search for files[0m
+[1;39m- Grep tool - NEVER search in files[0m
+[1;39m- Shell tool - NEVER run any shell commands[0m
+
+[1;39mCRITICAL: All context is in dispatch_context - just parse it.[0m
+[1;39m<[0m[1;35m/[0m[1;95mtools_usage[0m[1;39m>[0m
+
+[1;39m<rules>[0m
+
+[1;39m## Naming[0m
+[1;39m- Convert enum variant to snake_case directly [0m[1;39m([0m[1;39mNO [0m[32m"process_"[0m[1;39m prefix[0m[1;39m)[0m
+[1;39m- Examples:[0m
+[1;39m  - CreatePoll -> [0m[32m"create_poll"[0m
+[1;39m  - Vote -> [0m[32m"vote"[0m
+[1;39m  - ProcessGmp -> [0m[32m"process_gmp"[0m
+[1;39m  - InitializeConfig -> [0m[32m"initialize_config"[0m
+
+[1;39m## Pattern Recognition[0m
+
+[1;39m### Pattern [0m[1;36m1[0m[1;39m: Function Call[0m
+[1;39mFormat: `Enum::Variant => modul[0m[1;92me::f[0m[1;35munction[0m[1;39m([0m[1;33m...[0m[1;39m)[0m[1;39m`[0m
+[1;39m- name: enum variant in snake_case[0m
+[1;39m- handler_function: [0m[32m"module::function"[0m
+
+[1;39m### Pattern [0m[1;36m2[0m[1;39m: Inline Code[0m
+[1;39mFormat: `Enum::Variant => [0m[1;39m{[0m[1;39m code block [0m[1;39m}[0m[1;39m` [0m[1;39m([0m[1;39mno modul[0m[1;92me::f[0m[1;39munction call[0m[1;39m)[0m
+[1;39m- name: enum variant in snake_case[0m
+[1;39m- handler_function: [0m[32m"inline"[0m
+
+[1;39m## Source Module[0m
+[1;39m- Extract from `[0m[1;35m/[0m[1;35m/[0m[1;39m File:` or `[0m[1;35m/[0m[1;35m/[0m[1;39m Dispatch Function:` comments[0m
+[1;39m- Use relative path from crate root[0m
+
+[1;39m## Exclusions[0m
+[1;39m- Skip: `Enum::Variant => [0m[1;35mErr[0m[1;39m([0m[1;33m...[0m[1;39m)[0m[1;39m` [0m[1;39m([0m[1;39merror-only/deprecated[0m[1;39m)[0m
+
+[1;39m<[0m[1;35m/[0m[1;95mrules[0m[1;39m>[0m
+
+[1;39m<steps>[0m
+
+[1;36m1[0m[1;39m. Parse dispatch_context for match statements[0m
+[1;36m2[0m[1;39m. For each enum variant with implementation:[0m
+[1;39m   - Extract variant name, convert to snake_case[0m
+[1;39m   - Identify if function call or inline[0m
+[1;39m   - Extract source_module from file comments[0m
+[1;36m3[0m[1;39m. Write JSON output[0m
+
+[1;39m<[0m[1;35m/[0m[1;95msteps[0m[1;39m>[0m
+
+[1;39m<output_contract>[0m
+[1;39mformat: JSON only[0m
+[1;39mforbidden: Markdown, explanations[0m
+
+[1;39mWrite to [0m
+[1;35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[1;35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/.wake/ai/20260205_005817_h[0m
+[1;35m3zqmf/[0m[1;95minstructions.json[0m[1;39m:[0m
+[1;39m```json[0m
+[1;39m{[0m
+[1;39m  [0m[32m"instructions"[0m[1;39m: [0m[1;39m[[0m
+[1;39m    [0m[1;39m{[0m[32m"name"[0m[1;39m: [0m[32m"create_poll"[0m[1;39m, [0m[32m"source_module"[0m[1;39m: [0m[32m"src/processor.rs"[0m[1;39m, [0m[32m"handler_function"[0m[1;39m: [0m
+[32m"processor::create_poll"[0m[1;39m}[0m[1;39m,[0m
+[1;39m    [0m[1;39m{[0m[32m"name"[0m[1;39m: [0m[32m"vote"[0m[1;39m, [0m[32m"source_module"[0m[1;39m: [0m[32m"src/processor.rs"[0m[1;39m, [0m[32m"handler_function"[0m[1;39m: [0m[32m"processor::vote"[0m[1;39m}[0m[1;39m,[0m
+[1;39m    [0m[1;39m{[0m[32m"name"[0m[1;39m: [0m[32m"get_minimum_delegation"[0m[1;39m, [0m[32m"source_module"[0m[1;39m: [0m[32m"src/processor.rs"[0m[1;39m, [0m[32m"handler_function"[0m[1;39m: [0m[32m"inline"[0m[1;39m}[0m
+[1;39m  [0m[1;39m][0m
+[1;39m}[0m
+[1;39m```[0m
+[1;39m<[0m[1;35m/[0m[1;95moutput_contract[0m[1;37m>[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Defining instruction names**[0m
+
+[2;37mI need to clarify what [0m[2;32m"instruction names"[0m[2;37m means in this context. In Solomon's splitted-coded patterns, the [0m
+[2;37mtop-level gas service instruction includes variants like Initialize, [0m[1;2;35mSplToken[0m[1;2;37m([0m[2;37mPayWithSplToken[0m[1;2;37m)[0m[2;37m, and [0m
+[1;2;35mNative[0m[1;2;37m([0m[2;37mPayWithNativeToken[0m[1;2;37m)[0m[2;37m. The actual instructions are nested, including ForContractCall, AddGas, [0m
+[2;37mCollectFees, and Refund for both SplToken and Native. It seems I should format these instruction names in [0m
+[2;37msnake_case without prefixes. I’ll create a JSON structure for the instructions array with names, [0m
+[2;37msource_module, and handler_function details.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Deriving source_module**[0m
+
+[2;37mI need to derive the source_module from the file comments, specifically looking for lines starting with [0m
+[2;32m"File: ..."[0m[2;37m or [0m[2;32m"Dispatch Function: ..."[0m[2;37m. For each variant's handler, I have comments indicating the file path[0m
+[2;37mfor functions like process_initialize_config and process_pay_spl_for_contract_call. However, there are other [0m
+[2;37mfunctions like add_spl_gas and collect_fees_spl without specified [0m[2;32m"Dispatch Function:"[0m[2;37m comments. It seems I [0m
+[2;37mmight still set their source_module to something reasonable, guessing they belong in either [0m[2;32m'spl.rs'[0m[2;37m or [0m
+[2;32m'native.rs'[0m[2;37m. The rules mention extracting from comments, so I should stick to that.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Clarifying instruction inclusion**[0m
+
+[2;37mTo comply strictly, it seems I should only include instructions for functions with [0m[2;32m"Dispatch Function"[0m[2;37m [0m
+[2;37mcomment lines. However, this would leave out some leaf variants. The task specifies not to include error-only[0m
+[2;37minstructions, but others are valid. It also says to use only the dispatch_context, which means I can’t make [0m
+[2;37mguesses about unknown file paths. Still, I may derive their likely modules from the call location within the [0m
+[2;37mprocess_instruction function in [0m[2;32m'processor.rs'[0m[2;37m, noting that definitions likely fall within the included [0m
+[2;37mmodules like initialize, spl, and native.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Determining module paths**[0m
+
+[2;37mThe functions in the code are either re-exported into [0m[2;32m'processor'[0m[2;37m or defined at the sub-module level. They [0m
+[2;37mdirectly call [0m[2;32m'process_initialize_config'[0m[2;37m by name, indicating they’re imported into the current scope from [0m
+[2;37mmodules declared in src/processor, rather than from a full module path like [0m
+[2;32m'initialize::process_initialize_config'[0m[2;37m. The expected handler_function format is [0m[2;32m"module::function"[0m[2;37m. The [0m
+[2;37mpattern recognition rule states that I should format it with a module path, but since the function call lacks[0m
+[2;37ma module prefix, I wonder if I should still set a module path like [0m
+[2;32m"processor/initialize::process_initialize_config"[0m[2;37m. The rules aren't clear on this point.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Assessing source_module and handler_function**[0m
+
+[2;37mI realize I need to get the source_module from comments while using [0m[2;32m"inline"[0m[2;37m only for specific inline code [0m
+[2;37mblocks. For function calls, I think I should set handler_function to [0m[2;32m"initialize::process_initialize_config"[0m[2;37m [0m
+[2;37mor possibly just [0m[2;32m"process_initialize_config."[0m[2;37m The output examples show a module prefix like [0m[2;32m'processor'[0m[2;37m, [0m
+[2;37mindicating that my module might be [0m[2;32m'processor'[0m[2;37m at a top level with submodules underneath. I also need to [0m
+[2;37mdecide how to handle functions without a [0m[2;32m"Dispatch Function"[0m[2;37m comment, like [0m[2;32m'add_spl_gas'[0m[2;37m, which might still [0m
+[2;37mbelong to the [0m[2;32m'spl'[0m[2;37m module. Following the task's strict rules around comments will be essential, but I'm [0m
+[2;37mgetting a bit tangled in how to address functions not directly mentioned in the documentation.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Determining handler_function and source_module**[0m
+
+[2;37mI’m thinking that even if there's no [0m[2;32m'Dispatch Function'[0m[2;37m comment available, I can still figure out [0m
+[2;32m'source_module'[0m[2;37m for the functions based on their groupings, like assuming [0m[2;32m'add_spl_gas'[0m[2;37m is part of [0m
+[2;32m'src/processor/spl.rs'[0m[2;37m. The existing comments provide a basis for linking those to submodules. However, there[0m
+[2;37mmight be duplicate instruction names, like [0m[2;32m'for_contract_call'[0m[2;37m under both variants, leading to potential [0m
+[2;37mconflicts. To manage this, I’ll treat duplicates separately but still align with their respective handler [0m
+[2;37mfunctions. [0m
+
+[2;37mNext, I need to ensure that I appropriately classify the instructions like [0m[2;32m'initialize'[0m[2;37m, [0m[2;32m'spl_token'[0m[2;37m, and [0m
+[2;32m'native'[0m[2;37m, respecting the inline code pattern mentioned in the rules. There's some tension in interpreting the[0m
+[2;37mrules versus the actual patterns observed, especially for those nested matches. Finally, I’ll also ascertain [0m
+[2;37msource modules based on the file paths, using the comments accordingly to maintain consistency.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Deciding on output format and writing method**[0m
+
+[2;37mI need to follow the [0m[2;32m"Pattern 1"[0m[2;37m format for the handler functions, which means using modules like [0m
+[2;32m'processor::spl'[0m[2;37m for the spl functions. I see that I'll be using [0m[2;32m"inline"[0m[2;37m for tasks related to [0m[2;32m'spl_token'[0m[2;37m [0m
+[2;37mand [0m[2;32m'native'[0m[2;37m. However, I face an issue because while I need to write JSON to a file, I only have the [0m
+[2;32m"apply_patch"[0m[2;37m tool available for creating file content. Yet, I must ensure the final chat output adheres [0m
+[2;37mstrictly to the [0m[2;32m"JSON only"[0m[2;37m format without any extra text.[0m
+
+[2;37mI’m also wrestling with whether to send a preamble before applying the patch, as the guidelines state to [0m
+[2;37mprovide one but I don’t want to conflict with the [0m[2;32m"output contract."[0m[2;37m It seems I might need to stick to the [0m
+[2;37mJSON-only format for the final message while using [0m[2;32m"apply_patch"[0m[2;37m for file creation. In the end, I’ll focus on[0m
+[2;37mensuring the JSON is valid for parsing and create the file appropriately using the tools allowed.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Clarifying output instructions**[0m
+
+[2;37mI realize that while the [0m[2;32m"AGENTS"[0m[2;37m guidelines are the default, the [0m[2;32m"output_contract"[0m[2;37m from the user takes [0m
+[2;37mpriority. So, I won't include a preamble or planning steps. My goal is to create the JSON file using [0m
+[2;32m"apply_patch"[0m[2;37m without prefacing it with additional text.[0m
+
+[2;37mNext, I need to parse the instructions carefully based on the provided patterns. I'll extract the handler [0m
+[2;37mfunctions and source modules as dictated by the dispatch context, ensuring not to include duplicates. It’s [0m
+[2;37mimportant to note that the top-level variants serve as aggregators for the nested instructions, but I intend [0m
+[2;37mto focus only on the leaf-level instructions in the final JSON output. In the end, I’ll classify the [0m
+[2;37minstructions correctly as both [0m[2;32m"inline"[0m[2;37m and module functions where applicable.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Finalizing JSON structure**[0m
+
+[2;37mI need to confirm that the [0m[2;32m"Exclusions - Skip: `Enum::Variant => Err[0m[2;32m([0m[2;32m...[0m[2;32m)[0m[2;32m`"[0m[2;37m doesn’t apply to my case since [0m
+[2;37mnone of our instructions are error-only. [0m
+
+[2;37mNow, for [0m[2;32m'spl_token'[0m[2;37m and [0m[2;32m'native'[0m[2;37m, I’ll set [0m[2;32m'source_module'[0m[2;37m to [0m[2;32m'src/processor.rs'[0m[2;37m. I’ll adjust the absolute [0m
+[2;37mpaths to relative paths, as required, ensuring clarity on their origins. [0m
+
+[2;37mI must prepare the JSON format to map the instructions accurately. I’ll include nine items, specifically [0m
+[2;37mavoiding errors. Duplicates in the final JSON might be acceptable, so I’ll proceed with the JSON output and [0m
+[2;37muse apply_patch to write to the specified relative path.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Finalizing the instruction set**[0m
+
+[2;37mI need to ensure that I follow the [0m[2;32m"Write to instructions.json"[0m[2;37m guideline. The output must include all [0m
+[2;37mrelevant items, even if there are duplicates. However, I suspect they only want leaf-level instructions based[0m
+[2;37mon their sample.[0m
+
+[2;37mThe instructions likely should exclude top-level categories like [0m[2;32m'spl_token'[0m[2;37m and [0m[2;32m'native'[0m[2;37m. I’ll focus on [0m
+[2;37mincluding only leaf-level instructions. Now, ensuring to keep the right handler function paths and source [0m
+[2;37mmodule references is crucial. The final content will strictly be JSON, matching the specified filename and [0m
+[2;37mstructure.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[2;37mThinking: **Preparing to apply the patch**[0m
+
+[2;37mIt's time for me to apply the patch for the instructions file. I need to include the content as specified, [0m
+[2;37mensuring everything is properly formatted in JSON. I must decide if I need to present a brief explanation [0m
+[2;37mbefore executing the patch, but I want to keep it simple to avoid extra chatter. [0m
+
+[2;37mI'll stick to the guidelines and focus on the JSON content only. This means ensuring the source modules are [0m
+[2;37maccurately reflected and that the file path is correct before finalizing everything.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:07[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[37mAgent: Saving parsed instruction metadata to instructions.json now.[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:12[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[94mSystem: Changed files:[0m
+[35m/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/te[0m
+[35mst-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/.wake/ai/20260205_005817_h[0m
+[35m3zqmf/[0m[95minstructions.json[0m[94m add[0m
+[2;37m───────────────────────────────────── [0m[1m[[0m[1;92m01:02:15[0m[1m][0m instruction_discovery[2;37m ──────────────────────────────────────[0m
+[37mAgent: [0m[1;37m{[0m
+[37m  [0m[32m"instructions"[0m[37m: [0m[1;37m[[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"initialize"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/initialize.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::initialize::process_initialize_config"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"for_contract_call"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/spl.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::spl::process_pay_spl_for_contract_call"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"add_gas"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/spl.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::spl::add_spl_gas"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"collect_fees"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/spl.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::spl::collect_fees_spl"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"refund"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/spl.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::spl::refund_spl"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"for_contract_call"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/native.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::native::process_pay_native_for_contract_call"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"add_gas"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/native.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::native::add_native_gas"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"collect_fees"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/native.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::native::collect_fees_native"[0m
+[37m    [0m[1;37m}[0m[37m,[0m
+[37m    [0m[1;37m{[0m
+[37m      [0m[32m"name"[0m[37m: [0m[32m"refund"[0m[37m,[0m
+[37m      [0m[32m"source_module"[0m[37m: [0m[32m"src/processor/native.rs"[0m[37m,[0m
+[37m      [0m[32m"handler_function"[0m[37m: [0m[32m"processor::native::refund_native"[0m
+[37m    [0m[1;37m}[0m
+[37m  [0m[1;37m][0m
+[1;37m}[0m

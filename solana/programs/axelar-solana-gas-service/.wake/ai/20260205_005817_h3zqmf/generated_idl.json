@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "name": "axelar-solana-gas-service",
+  "instructions": [],
+  "accounts": [],
+  "types": [],
+  "ai_metadata": {
+    "source": "vanilla_solana",
+    "extraction_method": "fallback",
+    "notes": "Minimal IDL - Workflow execution failed: Step with name 'extract_for_contract_call_accounts_args' already exists"
+  }
+}

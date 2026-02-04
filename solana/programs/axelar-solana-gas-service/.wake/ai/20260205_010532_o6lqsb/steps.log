@@ -1,0 +1,4 @@
+ Step                            Attempt     Model                  Time       Cost 
+ ✓ type_extraction               1/1         gpt-5             4m 44.96s    $0.0568 
+ ✗ instruction_discovery         1/1         gpt-5             5m 41.83s    $0.1139 
+ Total                                                         5m 41.89s    $0.1707 

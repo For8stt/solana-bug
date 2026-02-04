@@ -1,0 +1,9 @@
+ Step                            Attempt     Model                  Time       Cost 
+ ✓ instruction_discovery         1/1         gpt-5             3m 44.37s    $0.0384 
+ ⟳ type_extraction               1/1         gpt-5             3m 44.51s    $0.0285 
+   extract_initialize_accounts…  -           gpt-5                     -          - 
+   extract_for_contract_call_a…  -           gpt-5                     -          - 
+   extract_add_gas_accounts_ar…  -           gpt-5                     -          - 
+   extract_collect_fees_accoun…  -           gpt-5                     -          - 
+   extract_refund_accounts_args  -           gpt-5                     -          - 
+ Total                                                         3m 44.51s    $0.0669 

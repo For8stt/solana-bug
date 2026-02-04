@@ -1,0 +1,50 @@
+{
+  "instructions": [
+    {
+      "name": "initialize",
+      "source_module": "src/processor/initialize.rs",
+      "handler_function": "processor::initialize::process_initialize_config"
+    },
+    {
+      "name": "for_contract_call",
+      "source_module": "src/processor/spl.rs",
+      "handler_function": "processor::spl::process_pay_spl_for_contract_call"
+    },
+    {
+      "name": "add_gas",
+      "source_module": "src/processor/spl.rs",
+      "handler_function": "processor::spl::add_spl_gas"
+    },
+    {
+      "name": "collect_fees",
+      "source_module": "src/processor/spl.rs",
+      "handler_function": "processor::spl::collect_fees_spl"
+    },
+    {
+      "name": "refund",
+      "source_module": "src/processor/spl.rs",
+      "handler_function": "processor::spl::refund_spl"
+    },
+    {
+      "name": "for_contract_call",
+      "source_module": "src/processor/native.rs",
+      "handler_function": "processor::native::process_pay_native_for_contract_call"
+    },
+    {
+      "name": "add_gas",
+      "source_module": "src/processor/native.rs",
+      "handler_function": "processor::native::add_native_gas"
+    },
+    {
+      "name": "collect_fees",
+      "source_module": "src/processor/native.rs",
+      "handler_function": "processor::native::collect_fees_native"
+    },
+    {
+      "name": "refund",
+      "source_module": "src/processor/native.rs",
+      "handler_function": "processor::native::refund_native"
+    }
+  ],
+  "dispatchers": []
+}
