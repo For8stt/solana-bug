@@ -1,9 +1,0 @@
-{
-  "entrypoint_macro_file": "/Applications/StudySTU/Solana/ackee/TridentCompilation/test-bug-alexar/trident-arena-compilation-container/test-axelar/audit-axelar-solana-241-master/solana/programs/axelar-solana-gas-service/src/entrypoint.rs",
-  "entrypoint_function_name": "process_instruction",
-  "dispatch_function_names": [
-    "process_initialize_config",
-    "process_pay_spl_for_contract_call",
-    "process_pay_native_for_contract_call"
-  ]
-}

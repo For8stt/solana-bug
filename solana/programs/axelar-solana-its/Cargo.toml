@@ -1,0 +1,44 @@
+[package]
+name = "axelar-solana-its"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[lints]
+workspace = true
+
+[features]
+no-entrypoint = []
+test-sbf = []
+
+[dependencies]
+alloy-primitives.workspace = true
+alloy-sol-types.workspace = true
+axelar-executable.workspace = true
+axelar-message-primitives.workspace = true
+axelar-solana-encoding.workspace = true
+axelar-solana-gas-service = { workspace = true, features = ["no-entrypoint"] }
+axelar-solana-gateway = { workspace = true, features = ["no-entrypoint"] }
+bitflags.workspace = true
+borsh.workspace = true
+interchain-token-transfer-gmp.workspace = true
+itertools.workspace = true
+mpl-token-metadata.workspace = true
+program-utils.workspace = true
+role-management.workspace = true
+solana-program.workspace = true
+spl-associated-token-account = { workspace = true, features = ["no-entrypoint"] }
+spl-token-2022 = { workspace = true, features = ["no-entrypoint", "serde-traits"] }
+typed-builder.workspace = true
+
+[dev-dependencies]
+anyhow.workspace = true
+axelar-solana-gateway-test-fixtures.workspace = true
+axelar-solana-memo-program = { workspace = true, features = ["no-entrypoint"] }
+evm-contracts-test-suite.workspace = true
+rstest.workspace = true
+solana-program-test.workspace = true
+solana-sdk.workspace = true
+test-context.workspace = true
